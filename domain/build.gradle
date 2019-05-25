@@ -7,13 +7,13 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation dependencies.kotlin
     implementation dependencies.rxJava
-    implementation dependencies.rxAndroid
     implementation dependencies.rxKotlin
     implementation dependencies.koin
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
+
 buildscript {
     repositories {
         mavenCentral()
