@@ -40,6 +40,13 @@ class ArticleListFragment : Fragment() {
 
         setupRecyclerView()
         setupViewModel()
+        setupSwipeRefresh()
+    }
+
+    private fun setupSwipeRefresh() {
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.getJobs(true)
+        }
     }
 
     private fun setupViewModel() {
@@ -75,10 +82,12 @@ class ArticleListFragment : Fragment() {
     private fun setVisibilities(
         showProgressBar: Boolean = false,
         showList: Boolean = false,
-        showError: Boolean = false
+        showError: Boolean = false,
+        isRefreshing: Boolean = false
     ) {
         binding.progressBar.visible(showProgressBar)
         binding.recyclerView.visible(showList)
         binding.btnTryAgain.visible(showError)
+        binding.swipeRefresh.isRefreshing = isRefreshing
     }
 }

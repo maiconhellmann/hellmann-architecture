@@ -26,13 +26,11 @@ class ArticleViewModel(
     }
 
     fun getJobs(forceUpdate: Boolean = false) {
-        disposables += useCase.execute(forceUpdate = forceUpdate).compose(StateMachineSingle())
+        disposables += useCase.execute(forceUpdate = forceUpdate)
+            .compose(StateMachineSingle())
             .observeOn(uiScheduler).subscribeBy(
                 onSuccess = {
                     state.postValue(it)
-                },
-                onError = {
-                    //TODO
                 }
             )
     }

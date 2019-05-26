@@ -21,7 +21,6 @@ class StateMachineSingle<T>: SingleTransformer<T, ViewState<T>> {
                 ViewState.Failed(it)
             }
             .doOnSubscribe {
-
                 ViewState.Loading
             }
     }
