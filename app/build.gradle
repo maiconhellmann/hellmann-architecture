@@ -36,6 +36,8 @@ dependencies {
     implementation dependencies.constraintLayout
     implementation dependencies.recyclerView
     implementation dependencies.cardView
+    implementation dependencies.navigationFragment
+    implementation dependencies.navigationUi
 
     implementation dependencies.kotlin
     implementation dependencies.ktx

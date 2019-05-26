@@ -17,6 +17,9 @@ ext {
     databindingVersion = '3.1.4'
     lifeCycleVersion = '2.0.0'
 
+    //Navigation
+    navigationVersion = '2.1.0-alpha04'
+
     //Rx
     rxJavaVersion = '2.2.7'
     rxKotlinVersion = '2.2.0'
@@ -34,6 +37,7 @@ ext {
     //Room version
     roomVersion = '2.1.0-alpha02'
 
+    //Glide image loader
     glideVersion = '4.8.0'
 
     //Test
@@ -48,6 +52,9 @@ ext {
             constraintLayout     : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
             cardView             : "androidx.cardview:cardview:$cardViewVersion",
             recyclerView         : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
+
+            navigationFragment   : "androidx.navigation:navigation-fragment-ktx:$navigationVersion",
+            navigationUi         : "androidx.navigation:navigation-ui-ktx:$navigationVersion",
 
             viewModel            : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion",
             lifeCycle            : "android.arch.lifecycle:extensions:$AndroidArchVersion",
