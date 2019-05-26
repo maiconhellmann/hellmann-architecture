@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">data</string>
-
-
-    <!--https://newsapi.org/v2/top-headlines?country=gb&apiKey=7a0d194a8eb34ca190e574d870f87fd7-->
-    <string name="api_url">https://newsapi.org</string>
-    <string name="api_key">7a0d194a8eb34ca190e574d870f87fd7</string>
-</resources>

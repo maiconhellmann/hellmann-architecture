@@ -14,7 +14,7 @@ import com.hellmann.data.local.model.ArticleCache
  * (c) 2019
  *
  */
-@Database(version = 2, entities = [ArticleCache::class])
+@Database(version = 1, entities = [ArticleCache::class])
 abstract class ArticleDataBase : RoomDatabase() {
     abstract fun articleDao(): ArticleDao
 
