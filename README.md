@@ -8,8 +8,9 @@ Kotlin
 
 ## Stack
 * Retrofit
-* Koin
-* Rx(java/android/kotlin)
+* Koin - Dependency Injection
+* Rx - java/android/kotlin
 * Data binding
-* Room
+* Room - ORM
 * LiveData 
+* Navigation library
