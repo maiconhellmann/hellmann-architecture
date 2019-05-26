@@ -58,8 +58,8 @@ ext {
             rxKotlin             : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
             rxAndroid            : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
 
-            koin                 : "org.koin:koin-android:$koinVersion",
-            koinViewModel        : "org.koin:koin-androidx-viewmodel:$koinVersion",
+            koin                  : "org.koin:koin-android:$koinVersion",
+            koinViewModel         : "org.koin:koin-androidx-viewmodel:$koinVersion",
 
             retrofit             : "com.squareup.retrofit2:retrofit:$retrofitVersion",
             retrofitRxAdapter    : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",

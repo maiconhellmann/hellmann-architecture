@@ -16,7 +16,7 @@ class ArticlesPayload (
 class ArticlePayload (
     val title: String,
     val description: String,
-    val url: String,
+    val url: String?= null,
     val urlToImage: String,
     val publishedAt: String
 )
