@@ -1,4 +1,4 @@
-package com.hellmann.archticture.feature
+package com.hellmann.archticture.feature.webview
 
 import android.os.Bundle
 import android.view.LayoutInflater

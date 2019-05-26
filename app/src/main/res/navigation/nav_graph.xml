@@ -13,7 +13,7 @@
     </fragment>
     <fragment
         android:id="@+id/webviewFragment"
-        android:name="com.hellmann.archticture.feature.WebviewFragment"
+        android:name="com.hellmann.archticture.feature.webview.WebviewFragment"
         android:label="WebviewFragment" >
         <argument
             android:name="url"
