@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/articleListFragment"
         android:name="com.hellmann.archticture.feature.list.ArticleListFragment"
-        android:label="ArticleListFragment" >
+        android:label="@string/fragment_article_list_title" >
         <action
             android:id="@+id/action_open_webview"
             app:destination="@id/webviewFragment" />
@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/webviewFragment"
         android:name="com.hellmann.archticture.feature.webview.WebviewFragment"
-        android:label="WebviewFragment" >
+        android:label="@string/fragment_webview_title" >
         <argument
             android:name="url"
             app:argType="string" />

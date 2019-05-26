@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Architecture</string>
     <string name="try_again">Try again</string>
+    <string name="fragment_article_list_title">Articles</string>
+    <string name="fragment_webview_title">Webview</string>
 
 </resources>
