@@ -1,4 +1,4 @@
-package com.hellmann.archticture.feature.main
+package com.hellmann.archticture.feature.list
 
 import androidx.lifecycle.MutableLiveData
 import com.hellmann.archticture.feature.viewmodel.BaseViewModel
@@ -17,7 +17,7 @@ import io.reactivex.rxkotlin.subscribeBy
  * 
  * (c) 2019 
  */
-class MainViewModel(
+class ArticleViewModel(
     private val useCase: GetArticlesUseCase, private val uiScheduler: Scheduler
 ) : BaseViewModel() {
 

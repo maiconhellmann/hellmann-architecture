@@ -1,4 +1,4 @@
-package com.hellmann.archticture.feature.main
+package com.hellmann.archticture.feature.list
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

@@ -8,14 +8,14 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="com.hellmann.archticture.feature.main.MainViewModel" />
+            type="com.hellmann.archticture.feature.list.ArticleViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature.main.MainActivity">
+        tools:context=".feature.list.ArticleListActivity">
 
 
         <androidx.recyclerview.widget.RecyclerView

@@ -1,4 +1,4 @@
-package com.hellmann.archticture.feature.main
+package com.hellmann.archticture.feature.list
 
 import android.content.Context
 import android.content.Intent
@@ -16,16 +16,16 @@ import com.hellmann.archticture.feature.viewmodel.ViewState
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class ArticleListActivity : AppCompatActivity() {
 
-    private val viewModel: MainViewModel by viewModel()
+    private val viewModel: ArticleViewModel by viewModel()
     private val androidJobAdapter: ArticlesAdapter by inject()
 
     private lateinit var binding: FragmentArticleListBinding
 
     companion object {
         fun launchIntent(context: Context): Intent {
-            return Intent(context, MainActivity::class.java)
+            return Intent(context, ArticleListActivity::class.java)
         }
     }
 
