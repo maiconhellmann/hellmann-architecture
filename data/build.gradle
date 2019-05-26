@@ -48,7 +48,7 @@ dependencies {
 
     implementation dependencies.koin
 
-    testImplementation dependencies.junit
-    androidTestImplementation dependencies.testRunner
-    androidTestImplementation dependencies.espresso
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.runner
+    androidTestImplementation testDependencies.espresso
 }

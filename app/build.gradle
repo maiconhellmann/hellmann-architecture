@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
 
@@ -22,15 +23,32 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
+
     def dependencies = rootProject.ext.dependencies
+    def testDependencies = rootProject.ext.testDependencies
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation dependencies.kotlin
     implementation dependencies.appCompat
-    implementation dependencies.coreKtx
     implementation dependencies.constraintLayout
+    implementation dependencies.cardView
 
-    testImplementation dependencies.junit
-    androidTestImplementation dependencies.testRunner
-    androidTestImplementation dependencies.espresso
+    implementation dependencies.kotlin
+    implementation dependencies.ktx
+
+    implementation dependencies.viewModel
+    implementation dependencies.lifeCycle
+
+    implementation dependencies.koin
+    implementation dependencies.koinViewModel
+
+    implementation dependencies.rxJava
+    implementation dependencies.rxAndroid
+    implementation dependencies.rxKotlin
+
+    kapt dependencies.dataBinding
+
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.runner
+    androidTestImplementation testDependencies.espresso
 }

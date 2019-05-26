@@ -6,8 +6,9 @@ import androidx.room.PrimaryKey
 @Entity
 data class ArticleCache(
     @PrimaryKey(autoGenerate = true)
-    val title: String = "",
+    val id: Long = 0,
 
+    val title: String = "",
     val description: String = "",
     val url: String = "",
     val urlToImage: String = "",
