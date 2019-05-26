@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/articleListFragment">
 
+    <fragment
+        android:id="@+id/articleListFragment"
+        android:name="com.hellmann.archticture.feature.list.ArticleListFragment"
+        android:label="ArticleListFragment" >
+        <action
+            android:id="@+id/action_open_webview"
+            app:destination="@id/webviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webviewFragment"
+        android:name="com.hellmann.archticture.feature.WebviewFragment"
+        android:label="WebviewFragment" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 </navigation>

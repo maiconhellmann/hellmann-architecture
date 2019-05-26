@@ -1,39 +1,40 @@
 package com.hellmann.archticture.feature.list
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hellmann.archticture.R
 import com.hellmann.archticture.databinding.FragmentArticleListBinding
+import com.hellmann.archticture.feature.viewmodel.ViewState
 import com.hellmann.archticture.util.extensions.toast
 import com.hellmann.archticture.util.extensions.visible
-import com.hellmann.archticture.feature.viewmodel.ViewState
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ArticleListActivity : AppCompatActivity() {
+class ArticleListFragment : Fragment() {
 
     private val viewModel: ArticleViewModel by viewModel()
     private val androidJobAdapter: ArticlesAdapter by inject()
 
     private lateinit var binding: FragmentArticleListBinding
 
-    companion object {
-        fun launchIntent(context: Context): Intent {
-            return Intent(context, ArticleListActivity::class.java)
-        }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_article_list, container, false)
+        return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this,
-            R.layout.fragment_article_list)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -45,7 +46,7 @@ class ArticleListActivity : AppCompatActivity() {
         viewModel.getJobs()
 
         viewModel.state.observe(this, Observer { state ->
-            when(state) {
+            when (state) {
                 is ViewState.Success -> {
                     androidJobAdapter.articles = state.data
                     setVisibilities(showList = true)
@@ -62,7 +63,7 @@ class ArticleListActivity : AppCompatActivity() {
     }
 
     private fun showError(throwable: Throwable) {
-        toast(throwable.toString())
+        view?.context?.toast(throwable.toString())
         Log.e("MainActivity", "Error", throwable)
     }
 
@@ -71,10 +72,13 @@ class ArticleListActivity : AppCompatActivity() {
         adapter = androidJobAdapter
     }
 
-    private fun setVisibilities(showProgressBar: Boolean = false, showList: Boolean = false, showError: Boolean = false) {
+    private fun setVisibilities(
+        showProgressBar: Boolean = false,
+        showList: Boolean = false,
+        showError: Boolean = false
+    ) {
         binding.progressBar.visible(showProgressBar)
         binding.recyclerView.visible(showList)
         binding.btnTryAgain.visible(showError)
     }
-
 }

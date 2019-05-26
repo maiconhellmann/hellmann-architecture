@@ -1,6 +1,7 @@
 package com.hellmann.archticture.feature.list
 
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.hellmann.archticture.R
 import com.hellmann.archticture.util.extensions.inflate
@@ -23,6 +24,15 @@ class ArticlesAdapter : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
             subtitle.text = article.publishedAt
             subtitle.visible(article.publishedAt.isNullOrBlank().not())
             image.load(article.urlToImage)
+
+            if (article.url != null) {
+                article.url?.let {
+                    val directions = ArticleListFragmentDirections.actionOpenWebview(it)
+                    setOnClickListener(Navigation.createNavigateOnClickListener(directions))
+                }
+            } else {
+                setOnClickListener(null)
+            }
 
             itemView
         }
