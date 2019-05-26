@@ -34,6 +34,8 @@ ext {
     //Room version
     roomVersion = '2.1.0-alpha02'
 
+    glideVersion = '4.4.0'
+
     //Test
     junitVersion = '4.12'
     espressoVersion = '3.1.1'
@@ -58,8 +60,8 @@ ext {
             rxKotlin             : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
             rxAndroid            : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
 
-            koin                  : "org.koin:koin-android:$koinVersion",
-            koinViewModel         : "org.koin:koin-androidx-viewmodel:$koinVersion",
+            koin                 : "org.koin:koin-android:$koinVersion",
+            koinViewModel        : "org.koin:koin-androidx-viewmodel:$koinVersion",
 
             retrofit             : "com.squareup.retrofit2:retrofit:$retrofitVersion",
             retrofitRxAdapter    : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
@@ -68,7 +70,10 @@ ext {
 
             room                 : "androidx.room:room-runtime:$roomVersion",
             roomRxJava           : "androidx.room:room-rxjava2:$roomVersion",
-            roomCompiler         : "androidx.room:room-compiler:$roomVersion"
+            roomCompiler         : "androidx.room:room-compiler:$roomVersion",
+
+            glide                : "com.github.bumptech.glide:glide:$glideVersion",
+            glideCompiler        : "com.github.bumptech.glide:compiler:$glideVersion",
     ]
 
     testDependencies = [

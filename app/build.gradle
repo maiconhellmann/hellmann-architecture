@@ -52,6 +52,9 @@ dependencies {
 
     kapt dependencies.dataBinding
 
+    implementation dependencies.glide
+    kapt dependencies.glideCompiler
+
     testImplementation testDependencies.junit
     androidTestImplementation testDependencies.runner
     androidTestImplementation testDependencies.espresso
