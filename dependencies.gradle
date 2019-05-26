@@ -34,7 +34,7 @@ ext {
     //Room version
     roomVersion = '2.1.0-alpha02'
 
-    glideVersion = '4.4.0'
+    glideVersion = '4.8.0'
 
     //Test
     junitVersion = '4.12'

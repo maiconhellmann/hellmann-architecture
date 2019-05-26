@@ -1,4 +1,4 @@
-package com.hellmann.archticture.extension
+package com.hellmann.archticture.util.extensions
 
 import android.view.LayoutInflater
 import android.view.View

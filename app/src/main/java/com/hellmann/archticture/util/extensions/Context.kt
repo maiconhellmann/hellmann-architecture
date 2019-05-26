@@ -1,4 +1,4 @@
-package com.hellmann.archticture.extension
+package com.hellmann.archticture.util.extensions
 
 import android.content.Context
 import android.widget.Toast

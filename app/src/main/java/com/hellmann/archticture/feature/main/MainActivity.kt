@@ -10,8 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hellmann.archticture.R
 import com.hellmann.archticture.databinding.FragmentArticleListBinding
-import com.hellmann.archticture.extension.toast
-import com.hellmann.archticture.extension.visible
+import com.hellmann.archticture.util.extensions.toast
+import com.hellmann.archticture.util.extensions.visible
 import com.hellmann.archticture.feature.viewmodel.ViewState
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.state.observe(this, Observer { state ->
             when(state) {
                 is ViewState.Success -> {
-                    androidJobAdapter.jobs = state.data
+                    androidJobAdapter.articles = state.data
                     setVisibilities(showList = true)
                 }
                 is ViewState.Loading -> {
