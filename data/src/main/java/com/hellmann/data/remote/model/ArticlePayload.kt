@@ -7,16 +7,14 @@ package com.hellmann.data.remote.model
  * 
  * (c) 2019 
  */
-class ArticlesPayload (
-    val status: String,
-    val totalResults: Long,
-    val articles: List<ArticlePayload> = emptyList()
+class ArticlesPayload(
+    val status: String, val totalResults: Long, val articles: List<ArticlePayload> = emptyList()
 )
 
-class ArticlePayload (
+class ArticlePayload(
     val title: String,
     val description: String,
-    val url: String?= null,
-    val urlToImage: String,
-    val publishedAt: String
+    val url: String? = null,
+    val urlToImage: String? = null,
+    val publishedAt: String? = null
 )

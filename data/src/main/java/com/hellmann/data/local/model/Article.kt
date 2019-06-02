@@ -9,7 +9,7 @@ data class ArticleCache(
     val id: Long = 0,
 
     val title: String = "",
-    val description: String = "",
+    val description: String? = "",
     val url: String? = "",
     val urlToImage: String? = "",
     val publishedAt: String? = ""
