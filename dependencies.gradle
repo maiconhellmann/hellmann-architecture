@@ -44,6 +44,7 @@ ext {
     junitVersion = '4.12'
     espressoVersion = '3.1.1'
     runnerVersion = '1.1.1'
+    mockitoVersion = '2.19.0'
 
     dependencies = [
             kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
@@ -84,8 +85,10 @@ ext {
     ]
 
     testDependencies = [
-            junit   : "junit:junit:$junitVersion",
-            espresso: "androidx.test.espresso:espresso-core:$espressoVersion",
-            runner  : "androidx.test:runner:$runnerVersion"
+            junit        : "junit:junit:$junitVersion",
+            espresso     : "androidx.test.espresso:espresso-core:$espressoVersion",
+            runner       : "androidx.test:runner:$runnerVersion",
+            mockito      : "org.mockito:mockito-core:$mockitoVersion",
+            mockitoInline: "org.mockito:mockito-inline:$mockitoVersion",
     ]
 }
