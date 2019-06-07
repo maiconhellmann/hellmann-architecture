@@ -4,7 +4,8 @@ import android.app.Application
 import com.hellmann.archticture.di.presentationModule
 import com.hellmann.data.di.dataModules
 import com.hellmann.domain.di.domainModule
-import org.koin.android.ext.android.startKoin
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 /*
  * This file is part of hellmann-architeture.
@@ -15,10 +16,11 @@ import org.koin.android.ext.android.startKoin
  */class PresentationApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-
-        startKoin(
-            this@PresentationApplication,
-            dataModules + domainModule + presentationModule
-        )
+        startKoin {
+            // declare used Android context
+            androidContext(this@PresentationApplication)
+            // declare modules
+            modules(dataModules + domainModule + presentationModule)
+        }
     }
 }

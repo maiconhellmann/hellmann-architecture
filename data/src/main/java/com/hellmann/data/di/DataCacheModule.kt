@@ -4,7 +4,7 @@ import com.hellmann.data.local.database.ArticleDataBase
 import com.hellmann.data.local.source.ArticleCacheDataSource
 import com.hellmann.data.local.source.ArticleCacheDataSourceImpl
 import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.module.module
+import org.koin.dsl.module
 
 /*
  * This file is part of hellmann-architeture.

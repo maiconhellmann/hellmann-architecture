@@ -2,7 +2,7 @@ package com.hellmann.data.di
 
 import com.hellmann.data.ArticleRepositoryImpl
 import com.hellmann.domain.repository.ArticleRepository
-import org.koin.dsl.module.module
+import org.koin.dsl.module
 
 /*
  * This file is part of hellmann-architeture.

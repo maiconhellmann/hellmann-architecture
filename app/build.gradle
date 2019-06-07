@@ -73,6 +73,7 @@ dependencies {
 
     implementation dependencies.koin
     implementation dependencies.koinViewModel
+    implementation dependencies.koinScope
 
     implementation dependencies.rxJava
     implementation dependencies.rxAndroid

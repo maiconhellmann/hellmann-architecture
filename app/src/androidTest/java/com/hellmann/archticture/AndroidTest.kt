@@ -11,5 +11,5 @@ import org.junit.runner.RunWith
  * (c) 2019 
  */
 @RunWith(AndroidJUnit4::class)
-class FragmentTest {
+class AndroidTest {
 }
