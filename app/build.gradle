@@ -63,6 +63,7 @@ dependencies {
     implementation dependencies.cardView
     implementation dependencies.navigationFragment
     implementation dependencies.navigationUi
+    implementation dependencies.fragmentX
 
     implementation dependencies.kotlin
     implementation dependencies.ktx
@@ -82,10 +83,10 @@ dependencies {
     implementation dependencies.glide
     kapt dependencies.glideCompiler
 
-    implementation 'androidx.fragment:fragment:1.1.0-beta01'
-    debugImplementation 'androidx.fragment:fragment-testing:1.1.0-beta01'
-    testImplementation("org.robolectric:robolectric:4.1")
-    testImplementation("androidx.test.ext:truth:1.1.0")
+
+    debugImplementation testDependencies.fragmentXTesting
+    testImplementation testDependencies.robolectric
+    testImplementation testDependencies.androidXTestExt
     testImplementation testDependencies.espresso
     testImplementation testDependencies.espressoContrib
 
