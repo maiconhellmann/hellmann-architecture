@@ -1,4 +1,4 @@
-package com.hellmann.data
+package com.hellmann.data.remote
 
 import com.hellmann.data.remote.api.ServerApi
 import com.hellmann.data.remote.model.ArticlePayload

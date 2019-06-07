@@ -11,9 +11,14 @@ import okhttp3.Response
  * 
  * (c) 2019 
  */class AuthenticationRequestInterceptor : Interceptor {
+
+    companion object {
+        const val KEY_AUTHENTICATION = "X-Api-Key"
+    }
+
     override fun intercept(chain: Interceptor.Chain): Response {
         val request =
-            chain.request().newBuilder().addHeader("X-Api-Key", BuildConfig.API_KEY).build()
+            chain.request().newBuilder().addHeader(KEY_AUTHENTICATION, BuildConfig.API_KEY).build()
         return chain.proceed(request)
     }
 }

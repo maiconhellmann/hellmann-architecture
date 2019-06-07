@@ -41,7 +41,7 @@ ext {
     glideVersion = '4.8.0'
 
     //Test
-    junitVersion = '4.12'
+    junitVersion = '1.1.0'
     espressoVersion = '3.1.1'
     runnerVersion = '1.1.1'
     mockitoVersion = '2.19.0'
@@ -85,10 +85,11 @@ ext {
     ]
 
     testDependencies = [
-            junit        : "junit:junit:$junitVersion",
-            espresso     : "androidx.test.espresso:espresso-core:$espressoVersion",
-            runner       : "androidx.test:runner:$runnerVersion",
-            mockito      : "org.mockito:mockito-core:$mockitoVersion",
-            mockitoInline: "org.mockito:mockito-inline:$mockitoVersion",
+            junit          : "androidx.test.ext:junit:$junitVersion",
+            espresso       : "androidx.test.espresso:espresso-core:$espressoVersion",
+            espressoContrib: "androidx.test.espresso:espresso-contrib:$espressoVersion",
+            runner         : "androidx.test:runner:$runnerVersion",
+            mockito        : "org.mockito:mockito-core:$mockitoVersion",
+            mockitoInline  : "org.mockito:mockito-inline:$mockitoVersion",
     ]
 }

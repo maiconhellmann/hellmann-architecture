@@ -23,8 +23,32 @@ android {
     }
     dataBinding {
         enabled true
+        enabledForTests = true
+    }
+
+    testOptions.unitTests {
+        includeAndroidResources = true
+
+        all {
+            testLogging {
+                events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+            }
+        }
+    }
+
+    android {
+        sourceSets {
+            String sharedTestDir = 'src/sharedTest/java'
+            test {
+                java.srcDir sharedTestDir
+            }
+            androidTest {
+                java.srcDir sharedTestDir
+            }
+        }
     }
 }
+
 
 dependencies {
     implementation project(path: ':domain')
@@ -58,7 +82,15 @@ dependencies {
     implementation dependencies.glide
     kapt dependencies.glideCompiler
 
+    implementation 'androidx.fragment:fragment:1.1.0-beta01'
+    debugImplementation 'androidx.fragment:fragment-testing:1.1.0-beta01'
+    testImplementation("org.robolectric:robolectric:4.1")
+    testImplementation("androidx.test.ext:truth:1.1.0")
+    testImplementation testDependencies.espresso
+    testImplementation testDependencies.espressoContrib
+
     testImplementation testDependencies.junit
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.mockitoInline
     androidTestImplementation testDependencies.runner
-    androidTestImplementation testDependencies.espresso
 }

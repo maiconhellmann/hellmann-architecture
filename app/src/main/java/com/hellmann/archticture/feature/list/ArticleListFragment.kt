@@ -19,7 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ArticleListFragment : Fragment() {
 
-    private val viewModel: ArticleViewModel by viewModel()
+    val viewModel: ArticleViewModel by viewModel()
     private val androidJobAdapter: ArticlesAdapter by inject()
 
     private lateinit var binding: FragmentArticleListBinding
