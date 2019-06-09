@@ -99,5 +99,6 @@ ext {
             fragmentXTesting: "androidx.fragment:fragment-testing:$fragmentXVersion",
             robolectric     : "org.robolectric:robolectric:$robolectricVersion",
             androidXTestExt : "androidx.test.ext:truth:$androidXTestExtVersion",
+            koinTest        : "org.koin:koin-test:$koinVersion",
     ]
 }

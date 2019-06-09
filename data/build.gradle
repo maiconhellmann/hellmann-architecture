@@ -60,4 +60,5 @@ dependencies {
     testImplementation testDependencies.mockitoInline
     androidTestImplementation testDependencies.runner
     androidTestImplementation testDependencies.espresso
+    androidTestImplementation testDependencies.koinTest
 }

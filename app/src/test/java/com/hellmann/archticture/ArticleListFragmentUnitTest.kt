@@ -11,6 +11,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.filters.SmallTest
 import com.hellmann.archticture.feature.list.ArticleListFragment
 import com.hellmann.archticture.feature.list.ArticleListFragmentDirections
 import com.hellmann.archticture.feature.list.ArticlesAdapter
@@ -27,6 +28,7 @@ import org.robolectric.RobolectricTestRunner
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
+@SmallTest
 @RunWith(RobolectricTestRunner::class)
 class ArticleListFragmentUnitTest {
 
