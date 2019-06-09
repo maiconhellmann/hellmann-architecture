@@ -84,7 +84,6 @@ dependencies {
     implementation dependencies.glide
     kapt dependencies.glideCompiler
 
-
     debugImplementation testDependencies.fragmentXTesting
     testImplementation testDependencies.robolectric
     testImplementation testDependencies.androidXTestExt

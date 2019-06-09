@@ -26,5 +26,13 @@ abstract class ArticleDataBase : RoomDatabase() {
                 .build()
                 .articleDao()
         }
+
+        fun createDatabaseInMemory(context: Context): ArticleDao {
+            return Room
+                .inMemoryDatabaseBuilder(context, ArticleDataBase::class.java)
+                .fallbackToDestructiveMigration()
+                .build()
+                .articleDao()
+        }
     }
 }

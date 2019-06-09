@@ -33,6 +33,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    testOptions.unitTests {
+        includeAndroidResources = true
+    }
 }
 
 dependencies {
@@ -57,7 +60,8 @@ dependencies {
 
     testImplementation testDependencies.junit
     testImplementation testDependencies.mockito
-    testImplementation testDependencies.mockitoInline
+    testImplementation testDependencies.robolectric
+
     androidTestImplementation testDependencies.runner
     androidTestImplementation testDependencies.espresso
     androidTestImplementation testDependencies.koinTest
