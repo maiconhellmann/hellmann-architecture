@@ -1,11 +1,10 @@
-package com.hellmann.data
+package com.hellmann.data.local
 
 import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry
 import com.hellmann.data.di.cacheDataModuleTest
 import com.hellmann.data.local.database.ArticleDao
 import com.hellmann.data.local.model.ArticleCache
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.koin.android.ext.koin.androidContext
@@ -22,22 +21,19 @@ import org.koin.test.AutoCloseKoinTest
  */
 class ArticleDaoTest : AutoCloseKoinTest() {
 
-    //    val database: ArticleDao by inject()
-    lateinit var instrumentationContext: Context
+    val articleDao = get<ArticleDao>()
 
     @Before
     fun before() {
-        instrumentationContext = InstrumentationRegistry.getInstrumentation().context
-
         startKoin {
-            androidContext(instrumentationContext)
+            androidContext(InstrumentationRegistry.getInstrumentation().context)
             modules(cacheDataModuleTest)
         }
     }
 
     @Test
-    fun startTest() {
-        get<ArticleDao>().apply {
+    fun articleDaoTesting() {
+        articleDao.apply {
 
             insertAll(listOf(
                 ArticleCache(0L, "title", "desc", "url", "urlToImage")
