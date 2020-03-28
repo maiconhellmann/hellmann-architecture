@@ -45,13 +45,11 @@ class ArticleListFragment : Fragment() {
 
     private fun setupSwipeRefresh() {
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.getJobs(true)
+            viewModel.onTryAgainRequired()
         }
     }
 
     private fun setupViewModel() {
-        viewModel.getJobs()
-
         viewModel.state.observe(this, Observer { state ->
             when (state) {
                 is ViewState.Success -> {

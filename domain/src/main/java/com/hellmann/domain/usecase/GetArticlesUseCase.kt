@@ -6,7 +6,7 @@ import com.hellmann.domain.repository.ArticleRepository
 class GetArticlesUseCase(
     private val repository: ArticleRepository
 ) {
-    suspend fun execute(forceUpdate: Boolean): List<Article> {
+    suspend fun execute(forceUpdate: Boolean = false): List<Article> {
         return repository.getArticles(forceUpdate)
     }
 }
