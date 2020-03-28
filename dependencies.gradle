@@ -26,6 +26,7 @@ ext {
 
     //Retrofit
     retrofitVersion = '2.6.0'
+    loggingInterceptorVersion = '4.2.1'
 
     //Gson
     gsonVersion = '2.8.5'
@@ -46,6 +47,7 @@ ext {
     mockitoVersion = '2.19.0'
     robolectricVersion = '4.1'
     androidXTestExtVersion = '1.1.0'
+    mockkVersion = '1.9.3'
 
     dependencies = [
             kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
@@ -77,6 +79,7 @@ ext {
             retrofit             : "com.squareup.retrofit2:retrofit:$retrofitVersion",
             retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
             gson                 : "com.google.code.gson:gson:$gsonVersion",
+            loggingInterceptor   : "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion",
 
             room                 : "androidx.room:room-runtime:$roomVersion",
             roomCompiler         : "androidx.room:room-compiler:$roomVersion",
@@ -97,5 +100,7 @@ ext {
             robolectric     : "org.robolectric:robolectric:$robolectricVersion",
             androidXTestExt : "androidx.test.ext:truth:$androidXTestExtVersion",
             koinTest        : "org.koin:koin-test:$koinVersion",
+            coroutinesTest  : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion",
+            mockK           : "io.mockk:mockk:$mockkVersion",
     ]
 }

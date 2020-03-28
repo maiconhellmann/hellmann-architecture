@@ -5,11 +5,12 @@ import com.hellmann.data.remote.model.ArticlePayload
 import com.hellmann.data.remote.model.ArticlesPayload
 import com.hellmann.data.remote.source.RemoteDataSource
 import com.hellmann.data.remote.source.RemoteDataSourceImpl
-import io.reactivex.Single
+import io.mockk.MockKAnnotations
+import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -19,40 +20,34 @@ import org.mockito.Mockito.mock
 class RemoteDataSourceTest {
 
     private lateinit var remoteDataSource: RemoteDataSource
+
+    @MockK
     private lateinit var serverApi: ServerApi
 
     @Before
     fun prepare() {
-        serverApi = mock(ServerApi::class.java)
+        MockKAnnotations.init(this)
         remoteDataSource = RemoteDataSourceImpl(serverApi)
     }
 
     @Test
-    fun `article list is empty`() {
-        `when`(serverApi.fetchArticles()).then {
-            Single.just(
-                ArticlesPayload(
-                    "ok", 0, emptyList()))
-        }
-        with(remoteDataSource.getArticles().test()) {
-            assertValue {
-                it.isEmpty()
-            }
-            assertValueCount(1)
+    fun `article list is empty`() = runBlockingTest {
+        coEvery { serverApi.fetchArticles() } returns ArticlesPayload("ok", 0, emptyList())
+
+        with(remoteDataSource.getArticles()) {
+            assert(isEmpty())
         }
     }
 
     @Test
-    fun `article list not empty`() {
-        `when`(serverApi.fetchArticles()).then {
-            Single.just(
-                ArticlesPayload(
-                    "ok", 1, listOf(ArticlePayload("", ""))))
-        }
+    fun `article list not empty`() = runBlockingTest {
+        coEvery {
+            serverApi.fetchArticles()
+        } returns ArticlesPayload("ok", 0, listOf(ArticlePayload("", "")))
 
-        with(remoteDataSource.getArticles().test()) {
-            assertValue { it.isNotEmpty() }
-            assertValueCount(1)
+        with(remoteDataSource.getArticles()) {
+            assert(isNotEmpty())
+            assert(size == 1)
         }
     }
 }
