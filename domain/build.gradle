@@ -6,8 +6,6 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation dependencies.kotlin
-    implementation dependencies.rxJava
-    implementation dependencies.rxKotlin
     implementation dependencies.koin
 }
 

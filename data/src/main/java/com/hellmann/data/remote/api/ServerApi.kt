@@ -1,7 +1,6 @@
 package com.hellmann.data.remote.api
 
 import com.hellmann.data.remote.model.ArticlesPayload
-import io.reactivex.Single
 import retrofit2.http.GET
 
 /*
@@ -13,5 +12,5 @@ import retrofit2.http.GET
  */interface ServerApi {
 
     @GET("/v2/top-headlines?country=gb")
-    fun fetchArticles(): Single<ArticlesPayload>
+    suspend fun fetchArticles(): ArticlesPayload
 }

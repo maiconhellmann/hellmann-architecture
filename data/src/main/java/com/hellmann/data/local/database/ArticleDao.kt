@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import com.hellmann.data.local.model.ArticleCache
-import io.reactivex.Single
 
 /*
  * This file is part of hellmann-architeture.
@@ -18,16 +17,16 @@ import io.reactivex.Single
 @Dao
 interface ArticleDao {
     @Query("SELECT * FROM ArticleCache")
-    fun getAll(): Single<List<ArticleCache>>
+    suspend fun getAll(): List<ArticleCache>
 
     @Query("DELETE FROM ArticleCache")
-    fun deleteAll()
+    suspend fun deleteAll()
 
     @Insert
     fun insertAll(list: List<ArticleCache>)
 
     @Transaction
-    fun updateDate(list: List<ArticleCache>) {
+    suspend fun updateDate(list: List<ArticleCache>) {
         deleteAll()
         insertAll(list)
     }

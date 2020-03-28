@@ -1,7 +1,8 @@
 package com.hellmann.data.remote.source
 
+import com.hellmann.data.remote.api.ServerApi
+import com.hellmann.data.remote.mapper.ArticlePayloadMapper
 import com.hellmann.domain.entity.Article
-import io.reactivex.Single
 
 /*
  * This file is part of hellmann-architeture.
@@ -10,5 +11,11 @@ import io.reactivex.Single
  * 
  * (c) 2019 
  */interface RemoteDataSource {
-    fun getArticles(): Single<List<Article>>
+    suspend fun getArticles(): List<Article>
+}
+
+class RemoteDataSourceImpl(private val articleApi: ServerApi) : RemoteDataSource {
+    override suspend fun getArticles(): List<Article> {
+        return ArticlePayloadMapper.map(articleApi.fetchArticles())
+    }
 }

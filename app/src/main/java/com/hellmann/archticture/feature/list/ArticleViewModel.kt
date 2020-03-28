@@ -1,14 +1,15 @@
 package com.hellmann.archticture.feature.list
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.hellmann.archticture.feature.viewmodel.BaseViewModel
-import com.hellmann.archticture.feature.viewmodel.StateMachineSingle
 import com.hellmann.archticture.feature.viewmodel.ViewState
+import com.hellmann.archticture.feature.viewmodel.toViewState
 import com.hellmann.domain.entity.Article
 import com.hellmann.domain.usecase.GetArticlesUseCase
-import io.reactivex.Scheduler
-import io.reactivex.rxkotlin.plusAssign
-import io.reactivex.rxkotlin.subscribeBy
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /*
  * This file is part of hellmann-architeture.
@@ -18,21 +19,19 @@ import io.reactivex.rxkotlin.subscribeBy
  * (c) 2019 
  */
 class ArticleViewModel(
-    private val useCase: GetArticlesUseCase, private val uiScheduler: Scheduler
+    private val useCase: GetArticlesUseCase
 ) : BaseViewModel() {
 
-    val state = MutableLiveData<ViewState<List<Article>>>().apply {
-        value = ViewState.Loading
-    }
+    val state = MutableLiveData<ViewState<List<Article>>>()
 
     fun getJobs(forceUpdate: Boolean = false) {
-        disposables += useCase.execute(forceUpdate = forceUpdate)
-            .compose(StateMachineSingle())
-            .observeOn(uiScheduler).subscribeBy(
-                onSuccess = {
-                    state.postValue(it)
-                }
-            )
+        viewModelScope.launch {
+            state.value = ViewState.Loading
+
+            withContext(Dispatchers.IO) {
+                state.postValue(useCase.execute(forceUpdate = forceUpdate).toViewState())
+            }
+        }
     }
 
     fun onTryAgainRequired() {

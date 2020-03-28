@@ -14,7 +14,7 @@ import com.hellmann.domain.entity.Article
 object ArticleCacheMapper {
     fun map(cacheData: List<ArticleCache>) = cacheData.map { map(it) }
 
-    private fun map(cacheData: ArticleCache) = Article(
+    fun map(cacheData: ArticleCache) = Article(
         title = cacheData.title,
         description = cacheData.description,
         publishedAt = cacheData.publishedAt,

@@ -68,16 +68,17 @@ dependencies {
     implementation dependencies.kotlin
     implementation dependencies.ktx
 
+    implementation dependencies.coroutines
+    implementation dependencies.coroutinesAndroid
+
     implementation dependencies.viewModel
     implementation dependencies.lifeCycle
+    implementation dependencies.lifeCycleScope
+    implementation dependencies.lifeCycleLiveData
 
     implementation dependencies.koin
     implementation dependencies.koinViewModel
     implementation dependencies.koinScope
-
-    implementation dependencies.rxJava
-    implementation dependencies.rxAndroid
-    implementation dependencies.rxKotlin
 
     kapt dependencies.dataBinding
 

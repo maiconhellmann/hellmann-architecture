@@ -2,15 +2,11 @@ package com.hellmann.domain.usecase
 
 import com.hellmann.domain.entity.Article
 import com.hellmann.domain.repository.ArticleRepository
-import io.reactivex.Scheduler
-import io.reactivex.Single
 
 class GetArticlesUseCase(
-    private val repository: ArticleRepository,
-    private val scheduler: Scheduler
+    private val repository: ArticleRepository
 ) {
-
-    fun execute(forceUpdate: Boolean): Single<List<Article>> {
-        return repository.getArticles(forceUpdate).subscribeOn(scheduler)
+    suspend fun execute(forceUpdate: Boolean): List<Article> {
+        return repository.getArticles(forceUpdate)
     }
 }
