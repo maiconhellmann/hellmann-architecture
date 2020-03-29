@@ -32,27 +32,33 @@ val remoteDataSourceModule = module {
 }
 
 fun provideAuthenticationRequestInterceptor() = AuthenticationRequestInterceptor()
+
 fun provideLoggingInterceptor(): HttpLoggingInterceptor {
     val level = if (BuildConfig.DEBUG) {
-        HttpLoggingInterceptor.Level.BODY
+        HttpLoggingInterceptor.Level.BASIC
     } else {
         HttpLoggingInterceptor.Level.NONE
     }
-    return HttpLoggingInterceptor().apply { this.level = level }
+    return HttpLoggingInterceptor().apply { this.setLevel(level) }
 }
 
 fun providesOkHttpClient(
     authenticationInterceptor: AuthenticationRequestInterceptor,
-    loggingInterceptor: AuthenticationRequestInterceptor
+    loggingInterceptor: HttpLoggingInterceptor
 ): OkHttpClient {
-    return OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS).writeTimeout(30, TimeUnit.SECONDS)
-        .addInterceptor(authenticationInterceptor).addInterceptor(loggingInterceptor).build()
+    return OkHttpClient.Builder()
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .readTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
+        .addInterceptor(authenticationInterceptor)
+        .addInterceptor(loggingInterceptor).build()
 }
 
 inline fun <reified T> createWebService(
     okHttpClient: OkHttpClient, url: String
 ): T {
-    return Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(url)
+    return Retrofit.Builder()
+        .addConverterFactory(GsonConverterFactory.create())
+        .baseUrl(url)
         .client(okHttpClient).build().create(T::class.java)
 }
