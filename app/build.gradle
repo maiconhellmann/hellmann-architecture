@@ -92,7 +92,7 @@ dependencies {
     testImplementation testDependencies.espressoContrib
     testImplementation testDependencies.koinTest
 
-    testImplementation 'android.arch.core:core-testing:1.1.1'
+    testImplementation testDependencies.archCoreTesting
     testImplementation testDependencies.junit
     testImplementation testDependencies.mockito
     testImplementation testDependencies.mockitoInline

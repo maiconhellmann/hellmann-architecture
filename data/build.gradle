@@ -52,17 +52,21 @@ dependencies {
     implementation dependencies.loggingInterceptor
 
     implementation dependencies.room
-    implementation dependencies.roomCoroutines
+    implementation(dependencies.roomCoroutines) {
+        //It was causing instrumented test to fail.
+        exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-core"
+    }
+
     kapt dependencies.roomCompiler
 
     implementation dependencies.koin
 
     testImplementation testDependencies.junit
-    testImplementation testDependencies.robolectric
     testImplementation testDependencies.coroutinesTest
     testImplementation testDependencies.mockK
 
+    androidTestImplementation testDependencies.archCoreTesting
     androidTestImplementation testDependencies.runner
-    androidTestImplementation testDependencies.espresso
     androidTestImplementation testDependencies.koinTest
+    androidTestImplementation testDependencies.coroutinesTest
 }

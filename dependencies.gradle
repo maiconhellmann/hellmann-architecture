@@ -32,7 +32,7 @@ ext {
     gsonVersion = '2.8.5'
 
     //Koin
-    koinVersion = '2.0.1'
+    koinVersion = '2.1.5'
 
     //Room version
     roomVersion = '2.2.5'
@@ -102,5 +102,7 @@ ext {
             koinTest        : "org.koin:koin-test:$koinVersion",
             coroutinesTest  : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion",
             mockK           : "io.mockk:mockk:$mockkVersion",
+            mockKAndroid    : "io.mockk:mockk-android:$mockkVersion",
+            archCoreTesting : "android.arch.core:core-testing:$AndroidArchVersion",
     ]
 }
