@@ -63,9 +63,11 @@ class ArticleViewModelTest : AutoCloseKoinTest() {
         val list = listOf(Article("Title"))
         coEvery { useCase.execute(false) } returns list
 
+        // When
         viewModel = ArticleViewModel(useCase, coroutineTestRule.dispatcher)
         viewModel.state.observeForever(viewStateObserver)
 
+        // Then
         verifyAll {
             // Verifies all states emitted
             viewStateObserver.onChanged(ViewState.Loading)
@@ -78,10 +80,11 @@ class ArticleViewModelTest : AutoCloseKoinTest() {
         // Given
         coEvery { useCase.execute(false) } returns emptyList()
 
+        // When
         viewModel = ArticleViewModel(useCase, coroutineTestRule.dispatcher)
         viewModel.state.observeForever(viewStateObserver)
 
-        // When viewModel is created it triggers load from cache
+        // Then
         verify {
             viewStateObserver.onChanged(ViewState.Loading)
             viewStateObserver.onChanged(ViewState.Success(emptyList()))
@@ -91,10 +94,10 @@ class ArticleViewModelTest : AutoCloseKoinTest() {
         val list = listOf(Article("Title"))
         coEvery { useCase.execute(true) } returns list
 
-        // Action
+        // When
         viewModel.onTryAgainRequired()
 
-        // Verify
+        // Then
         verify {
             viewStateObserver.onChanged(ViewState.Loading)
             viewStateObserver.onChanged(ViewState.Success(list))

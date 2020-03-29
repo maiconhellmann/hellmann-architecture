@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.VisibleForTesting
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -20,9 +21,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ArticleListFragment : Fragment() {
 
     val viewModel: ArticleViewModel by viewModel()
-    private val androidJobAdapter: ArticlesAdapter by inject()
+    private val articlesAdapter: ArticlesAdapter by inject()
 
-    private lateinit var binding: FragmentArticleListBinding
+    lateinit var binding: FragmentArticleListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -49,11 +50,12 @@ class ArticleListFragment : Fragment() {
         }
     }
 
-    private fun setupViewModel() {
-        viewModel.state.observe(this, Observer { state ->
+    @VisibleForTesting
+    fun setupViewModel() {
+        viewModel.state.observe(this.viewLifecycleOwner, Observer { state ->
             when (state) {
                 is ViewState.Success -> {
-                    androidJobAdapter.articles = state.data
+                    articlesAdapter.articles = state.data
                     setVisibilities(showList = true)
                 }
                 is ViewState.Loading -> {
@@ -74,7 +76,7 @@ class ArticleListFragment : Fragment() {
 
     private fun setupRecyclerView() = with(binding.recyclerView) {
         layoutManager = LinearLayoutManager(context)
-        adapter = androidJobAdapter
+        adapter = articlesAdapter
     }
 
     private fun setVisibilities(

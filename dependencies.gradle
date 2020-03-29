@@ -44,8 +44,7 @@ ext {
     junitVersion = '1.1.0'
     espressoVersion = '3.1.1'
     runnerVersion = '1.1.1'
-    mockitoVersion = '2.19.0'
-    robolectricVersion = '4.1'
+    robolectricVersion = '4.3'
     androidXTestExtVersion = '1.1.0'
     mockkVersion = '1.9.3'
 
@@ -94,8 +93,6 @@ ext {
             espresso        : "androidx.test.espresso:espresso-core:$espressoVersion",
             espressoContrib : "androidx.test.espresso:espresso-contrib:$espressoVersion",
             runner          : "androidx.test:runner:$runnerVersion",
-            mockito         : "org.mockito:mockito-core:$mockitoVersion",
-            mockitoInline   : "org.mockito:mockito-inline:$mockitoVersion",
             fragmentXTesting: "androidx.fragment:fragment-testing:$fragmentXVersion",
             robolectric     : "org.robolectric:robolectric:$robolectricVersion",
             androidXTestExt : "androidx.test.ext:truth:$androidXTestExtVersion",

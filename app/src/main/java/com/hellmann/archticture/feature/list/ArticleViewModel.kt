@@ -1,5 +1,6 @@
 package com.hellmann.archticture.feature.list
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
@@ -20,7 +21,7 @@ import kotlinx.coroutines.withContext
  */
 class ArticleViewModel(
     private val useCase: GetArticlesUseCase,
-    private val ioDispatcher: CoroutineDispatcher
+     @VisibleForTesting var ioDispatcher: CoroutineDispatcher
 ) : BaseViewModel() {
 
     val state = liveData(ioDispatcher) {

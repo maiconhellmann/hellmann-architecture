@@ -15,6 +15,10 @@ import kotlinx.android.synthetic.main.fragment_article_item.view.title
 class ArticlesAdapter : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
 
     var articles: List<Article> = listOf()
+    set(value) {
+        field = value
+        notifyDataSetChanged()
+    }
 
     inner class ViewHolder(parent: ViewGroup) :
         RecyclerView.ViewHolder(parent.inflate(R.layout.fragment_article_item)) {
