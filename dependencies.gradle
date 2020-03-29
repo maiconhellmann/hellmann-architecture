@@ -3,9 +3,9 @@ ext {
     minSdkVersion = 20
     targetSdkVersion = 28
 
-    kotlinVersion = '1.3.70'
+    kotlinVersion = '1.3.71'
 
-    buildTools = '3.4.2'
+    buildTools = '3.6.1'
 
     appCompatVersion = '1.0.2'
     constraintLayoutVersion = '1.1.3'
