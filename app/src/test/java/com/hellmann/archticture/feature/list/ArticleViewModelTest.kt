@@ -1,21 +1,24 @@
 package com.hellmann.archticture.feature.list
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.hellmann.archticture.di.presentationModuleTest
+import androidx.lifecycle.Observer
 import com.hellmann.archticture.feature.viewmodel.ViewState
+import com.hellmann.archticture.util.CoroutineTestRule
 import com.hellmann.domain.entity.Article
 import com.hellmann.domain.usecase.GetArticlesUseCase
-import io.reactivex.Single
+import io.mockk.MockKAnnotations
+import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
+import io.mockk.verify
+import io.mockk.verifyAll
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.TestRule
-import org.koin.core.context.startKoin
-import org.koin.dsl.module
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
 import org.koin.test.AutoCloseKoinTest
-import org.koin.test.inject
-import org.mockito.Mockito
-import org.mockito.Mockito.mock
 
 /*
  * This file is part of hellmann-architeture.
@@ -24,43 +27,77 @@ import org.mockito.Mockito.mock
  * 
  * (c) 2019 
  */
+@ExperimentalCoroutinesApi
+@RunWith(JUnit4::class)
 class ArticleViewModelTest : AutoCloseKoinTest() {
 
-    val viewModel: ArticleViewModel by inject()
-    val useCase: GetArticlesUseCase by inject()
+    lateinit var viewModel: ArticleViewModel
 
-    //A JUnit Test Rule that swaps the background executor used by the Architecture Components with a different one which executes each task synchronously.
-    //https://developer.android.com/reference/android/arch/core/executor/testing/InstantTaskExecutorRule
+    @MockK
+    lateinit var useCase: GetArticlesUseCase
+
+    @MockK(relaxed = true)
+    lateinit var viewStateObserver: Observer<ViewState<List<Article>>>
+
+    /**
+     * Changes the main thread to be able to tests
+     */
     @get:Rule
-    var rule: TestRule = InstantTaskExecutorRule()
+    val coroutineTestRule = CoroutineTestRule()
+
+    /**
+     * Prevents the following exception:
+     * Exception in thread main @coroutine#2 java.lang.RuntimeException: Method getMainLooper in android.os.Looper not mocked.
+     */
+    @get:Rule
+    val instantExecutorRule = InstantTaskExecutorRule()
 
     @Before
-    fun before() {
-        val mockUseCase = mock(GetArticlesUseCase::class.java)
-        val module = module { factory { mockUseCase } }
+    fun setup() {
+        MockKAnnotations.init(this)
+    }
 
-        //Needs to be mocked before injection(maybe try using mock by koin
-        Mockito.`when`(mockUseCase.execute(true)).then {
-            Single.just(listOf(Article("Title")))
-        }
+    @Test
+    fun `viewModel - default`() = runBlockingTest {
+        // Given
+        val list = listOf(Article("Title"))
+        coEvery { useCase.execute(false) } returns list
 
-        startKoin {
-            modules(presentationModuleTest + module)
+        viewModel = ArticleViewModel(useCase, coroutineTestRule.dispatcher)
+        viewModel.state.observeForever(viewStateObserver)
+
+        verifyAll {
+            // Verifies all states emitted
+            viewStateObserver.onChanged(ViewState.Loading)
+            viewStateObserver.onChanged(ViewState.Success(list))
         }
     }
 
     @Test
-    fun viewModelTest() {
+    fun `viewModel - refresh`() = runBlockingTest {
+        // Given
+        coEvery { useCase.execute(false) } returns emptyList()
 
-        assert(viewModel.state.value == ViewState.Loading)
+        viewModel = ArticleViewModel(useCase, coroutineTestRule.dispatcher)
+        viewModel.state.observeForever(viewStateObserver)
 
-        viewModel.getJobs(true)
+        // When viewModel is created it triggers load from cache
+        verify {
+            viewStateObserver.onChanged(ViewState.Loading)
+            viewStateObserver.onChanged(ViewState.Success(emptyList()))
+        }
 
-        assert(viewModel.state.value is ViewState.Success)
+        // Given
+        val list = listOf(Article("Title"))
+        coEvery { useCase.execute(true) } returns list
 
-        with(viewModel.state.value as ViewState.Success) {
-            assert(data.isNotEmpty())
-            assert(data.first().title == "Title")
+        // Action
+        viewModel.onTryAgainRequired()
+
+        // Verify
+        verify {
+            viewStateObserver.onChanged(ViewState.Loading)
+            viewStateObserver.onChanged(ViewState.Success(list))
         }
     }
 }

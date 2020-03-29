@@ -2,8 +2,10 @@ package com.hellmann.archticture.di
 
 import com.hellmann.archticture.feature.list.ArticleViewModel
 import com.hellmann.archticture.feature.list.ArticlesAdapter
-import com.hellmann.domain.usecase.GetArticlesUseCase
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 /*
@@ -14,10 +16,11 @@ import org.koin.dsl.module
  * (c) 2019 
  */
 
+@ExperimentalCoroutinesApi
 val presentationModuleTest = module {
     factory { ArticlesAdapter() }
 
-    factory {
-        ArticleViewModel(useCase = get(), uiScheduler = Schedulers.trampoline())
+    viewModel {
+        ArticleViewModel(useCase = get(), ioDispatcher = TestCoroutineDispatcher())
     }
 }

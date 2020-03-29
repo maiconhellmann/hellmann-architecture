@@ -4,6 +4,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -46,12 +47,12 @@ class ArticleListFragmentUnitTest {
             Navigation.setViewNavController(it.requireView(), mockNavController)
 
             //Loading
-            it.viewModel.state.postValue(ViewState.Loading)
+            (it.viewModel.state as MutableLiveData).postValue(ViewState.Loading)
 
             assert(it.view?.findViewById<View>(R.id.progressBar)?.isVisible == true)
 
             //Post a list with one item
-            it.viewModel.state.postValue(
+            (it.viewModel.state as MutableLiveData).postValue(
                 ViewState.Success(
                     listOf(
                         Article(

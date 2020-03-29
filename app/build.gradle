@@ -91,10 +91,10 @@ dependencies {
     testImplementation testDependencies.espresso
     testImplementation testDependencies.espressoContrib
     testImplementation testDependencies.koinTest
+    testImplementation testDependencies.coroutinesTest
+    testImplementation testDependencies.mockK
 
     testImplementation testDependencies.archCoreTesting
     testImplementation testDependencies.junit
-    testImplementation testDependencies.mockito
-    testImplementation testDependencies.mockitoInline
     androidTestImplementation testDependencies.runner
 }
