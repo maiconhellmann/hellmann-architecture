@@ -64,7 +64,7 @@ class ArticleViewModelTest : AutoCloseKoinTest() {
         coEvery { useCase.execute(false) } returns list
 
         // When
-        viewModel = ArticleViewModel(useCase, coroutineTestRule.dispatcher)
+        viewModel = ArticleViewModel(useCase)
         viewModel.state.observeForever(viewStateObserver)
 
         // Then
@@ -81,7 +81,7 @@ class ArticleViewModelTest : AutoCloseKoinTest() {
         coEvery { useCase.execute(false) } returns emptyList()
 
         // When
-        viewModel = ArticleViewModel(useCase, coroutineTestRule.dispatcher)
+        viewModel = ArticleViewModel(useCase)
         viewModel.state.observeForever(viewStateObserver)
 
         // Then

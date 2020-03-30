@@ -28,7 +28,6 @@ import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import io.mockk.verify
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
@@ -65,7 +64,7 @@ class ArticleListFragmentUnitTest {
                 coEvery { execute(any()) } returns emptyList()
             }
 
-            it.binding.viewModel = ArticleViewModel(useCase, Dispatchers.IO)
+            it.binding.viewModel = ArticleViewModel(useCase)
             it.setupViewModel()
 
             val recyclerView = it.view?.findViewById<RecyclerView>(R.id.recyclerView)
