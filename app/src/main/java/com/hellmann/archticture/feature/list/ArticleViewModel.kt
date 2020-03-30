@@ -26,7 +26,6 @@ class ArticleViewModel(
     }
 
     fun onTryAgainRequired() {
-        println("onTryAgainRequired")
         viewModelScope.launch {
             // This should be different.
             // I was thinking on creating a liveData stream from DB. Then this call would not be necessary anymore.

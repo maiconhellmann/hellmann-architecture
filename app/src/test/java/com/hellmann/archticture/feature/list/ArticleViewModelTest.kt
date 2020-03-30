@@ -1,24 +1,18 @@
 package com.hellmann.archticture.feature.list
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.hellmann.archticture.base.MockKTest
 import com.hellmann.archticture.feature.viewmodel.ViewState
-import com.hellmann.archticture.util.CoroutineTestRule
 import com.hellmann.domain.entity.Article
 import com.hellmann.domain.usecase.GetArticlesUseCase
-import io.mockk.MockKAnnotations
-import io.mockk.coEvery
+import io.mockk.*
 import io.mockk.impl.annotations.MockK
-import io.mockk.verify
-import io.mockk.verifyAll
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.Before
-import org.junit.Rule
+import org.junit.After
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.koin.test.AutoCloseKoinTest
 
 /*
  * This file is part of hellmann-architeture.
@@ -29,33 +23,14 @@ import org.koin.test.AutoCloseKoinTest
  */
 @ExperimentalCoroutinesApi
 @RunWith(JUnit4::class)
-class ArticleViewModelTest : AutoCloseKoinTest() {
+class ArticleViewModelTest : MockKTest() {
 
     lateinit var viewModel: ArticleViewModel
 
     @MockK
     lateinit var useCase: GetArticlesUseCase
 
-    @MockK(relaxed = true)
     lateinit var viewStateObserver: Observer<ViewState<List<Article>>>
-
-    /**
-     * Changes the main thread to be able to tests
-     */
-    @get:Rule
-    val coroutineTestRule = CoroutineTestRule()
-
-    /**
-     * Prevents the following exception:
-     * Exception in thread main @coroutine#2 java.lang.RuntimeException: Method getMainLooper in android.os.Looper not mocked.
-     */
-    @get:Rule
-    val instantExecutorRule = InstantTaskExecutorRule()
-
-    @Before
-    fun setup() {
-        MockKAnnotations.init(this)
-    }
 
     @Test
     fun `viewModel - default`() = runBlockingTest {
@@ -65,6 +40,8 @@ class ArticleViewModelTest : AutoCloseKoinTest() {
 
         // When
         viewModel = ArticleViewModel(useCase)
+
+        viewStateObserver = spyk(Observer {})
         viewModel.state.observeForever(viewStateObserver)
 
         // Then
@@ -82,6 +59,8 @@ class ArticleViewModelTest : AutoCloseKoinTest() {
 
         // When
         viewModel = ArticleViewModel(useCase)
+
+        viewStateObserver = spyk(Observer {})
         viewModel.state.observeForever(viewStateObserver)
 
         // Then
@@ -102,5 +81,10 @@ class ArticleViewModelTest : AutoCloseKoinTest() {
             viewStateObserver.onChanged(ViewState.Loading)
             viewStateObserver.onChanged(ViewState.Success(list))
         }
+    }
+
+    @After
+    fun tearDown() {
+        confirmVerified(viewStateObserver)
     }
 }
