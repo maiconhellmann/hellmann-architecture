@@ -8,6 +8,7 @@ import com.hellmann.data.remote.source.RemoteDataSourceImpl
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Test
@@ -17,6 +18,7 @@ import org.junit.Test
  *
  * @see [Testing documentation](http://d.android.com/tools/testing)
  */
+@ExperimentalCoroutinesApi
 class RemoteDataSourceTest {
 
     private lateinit var remoteDataSource: RemoteDataSource
