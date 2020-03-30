@@ -22,7 +22,7 @@ import com.hellmann.domain.repository.ArticleRepository
             val articleList = cacheDataSource.getArticles()
 
             if (articleList.isEmpty()) {
-                getArticlesRemote(false)
+                getArticlesRemote(true)
             } else {
                 articleList
             }
