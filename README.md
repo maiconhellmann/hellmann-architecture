@@ -2,9 +2,8 @@
 MVVM with these layers:
 * View
 * ViewModel
-* Data
-* Domain
-* UseCase
+* Data - Repositories
+* Domain - UseCase
 
 ## Language
 100% Kotlin
@@ -14,8 +13,11 @@ MVVM with these layers:
 * Koin - Dependency Injection
 * Coroutines
 * Data binding
-* Room - ORM
+* Room - ORM  
 * LiveData 
-* Navigation library  
+* Navigation library
+* Unit tests / Medium tests  
+* MockK  
+* Espresso  
 
 There is a branch using RxJava: rxjava
